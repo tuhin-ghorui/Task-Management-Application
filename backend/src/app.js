@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const env = require("./config/env");
 const authRoutes = require("./routes/auth.routes");
 const healthRoutes = require("./routes/health.routes");
+const taskRoutes = require("./routes/task.routes");
 const { errorHandler, notFound } = require("./middleware/error.middleware");
 
 const app = express();
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/health", healthRoutes);
 app.use("/api/auth", authRoutes);
+app.use("/api/tasks", taskRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

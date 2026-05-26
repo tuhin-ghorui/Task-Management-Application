@@ -14,6 +14,10 @@ const handleValidationError = (error) => {
   return new AppError(messages.join(". "), 400);
 };
 
+const handleCastError = (error) => {
+  return new AppError(`Invalid ${error.path}: ${error.value}`, 400);
+};
+
 const errorHandler = (error, req, res, next) => {
   let normalizedError = error;
 
@@ -23,6 +27,10 @@ const errorHandler = (error, req, res, next) => {
 
   if (error.name === "ValidationError") {
     normalizedError = handleValidationError(error);
+  }
+
+  if (error.name === "CastError") {
+    normalizedError = handleCastError(error);
   }
 
   const statusCode = normalizedError.statusCode || 500;
