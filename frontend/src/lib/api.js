@@ -13,10 +13,16 @@ export const apiRequest = async (path, options = {}) => {
     headers.Authorization = `Bearer ${token}`;
   }
 
-  const response = await fetch(`${API_URL}${path}`, {
-    ...options,
-    headers
-  });
+  let response;
+
+  try {
+    response = await fetch(`${API_URL}${path}`, {
+      ...options,
+      headers
+    });
+  } catch {
+    throw new Error("Cannot reach the backend API. Make sure the backend is running on localhost:5000.");
+  }
 
   const data = await response.json().catch(() => ({}));
 

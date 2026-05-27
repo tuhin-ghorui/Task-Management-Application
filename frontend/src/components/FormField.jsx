@@ -2,17 +2,17 @@ const FormField = ({ error, label, ...props }) => {
   const inputId = props.id || props.name;
 
   return (
-    <div>
-      <label className="block text-sm font-medium text-slate-700" htmlFor={inputId}>
+    <div className="space-y-2">
+      <label className="block text-sm font-semibold tracking-tight text-slate-700 dark:text-slate-300" htmlFor={inputId}>
         {label}
       </label>
       <input
         {...props}
         id={inputId}
-        className="mt-2 h-11 w-full rounded-lg border border-slate-300 bg-white px-3 text-base text-slate-950 outline-none transition focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100"
+        className="h-11 w-full rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white/50 dark:bg-slate-900/50 px-3.5 text-base text-slate-900 dark:text-white placeholder:text-slate-400 focus:border-emerald-500 dark:focus:border-emerald-400 focus:bg-white dark:focus:bg-slate-900 focus:ring-4 focus:ring-emerald-500/10 outline-none shadow-sm"
       />
       {error ? (
-        <p className="mt-2 text-sm text-red-600" role="alert">
+        <p className="text-xs font-medium text-red-600 dark:text-red-400" role="alert">
           {error}
         </p>
       ) : null}
@@ -21,3 +21,4 @@ const FormField = ({ error, label, ...props }) => {
 };
 
 export default FormField;
+

@@ -51,26 +51,28 @@ const Register = () => {
 
   return (
     <AuthLayout heading="Create account" subheading="Set up your workspace and start tracking tasks.">
-      <form className="space-y-5" onSubmit={handleSubmit}>
+      <form className="space-y-6" onSubmit={handleSubmit}>
         {error ? (
-          <div className="rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
+          <div className="rounded-xl border border-red-200 dark:border-red-950 bg-red-50 dark:bg-red-950/20 px-4 py-3.5 text-sm text-red-700 dark:text-red-400 animate-fade-in" role="alert">
             {error}
           </div>
         ) : null}
 
         <FormField
           autoComplete="name"
-          label="Name"
+          label="Your Name"
           name="name"
           onChange={handleChange}
+          placeholder="John Doe"
           type="text"
           value={form.name}
         />
         <FormField
           autoComplete="email"
-          label="Email"
+          label="Email Address"
           name="email"
           onChange={handleChange}
+          placeholder="you@example.com"
           type="email"
           value={form.email}
         />
@@ -79,12 +81,13 @@ const Register = () => {
           label="Password"
           name="password"
           onChange={handleChange}
+          placeholder="Minimum 8 characters"
           type="password"
           value={form.password}
         />
 
         <button
-          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 text-sm font-semibold text-white transition hover:bg-slate-800 focus:outline-none focus:ring-4 focus:ring-slate-300 disabled:cursor-not-allowed disabled:opacity-60"
+          className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-slate-950 hover:bg-slate-900 dark:bg-emerald-600 dark:hover:bg-emerald-500 active:scale-[0.98] px-4 text-sm font-semibold text-white transition-all focus:outline-none focus:ring-4 focus:ring-slate-300 dark:focus:ring-emerald-500/20 disabled:cursor-not-allowed disabled:opacity-60 shadow-md shadow-slate-950/10 dark:shadow-emerald-500/10"
           disabled={isSubmitting}
           type="submit"
         >
@@ -93,9 +96,9 @@ const Register = () => {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-slate-600">
+      <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
         Already have an account?{" "}
-        <Link className="font-medium text-emerald-700 hover:text-emerald-800" to="/login">
+        <Link className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" to="/login">
           Sign in
         </Link>
       </p>
@@ -104,3 +107,4 @@ const Register = () => {
 };
 
 export default Register;
+
