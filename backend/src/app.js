@@ -12,9 +12,25 @@ const { errorHandler, notFound } = require("./middleware/error.middleware");
 const app = express();
 
 app.use(helmet());
+const allowedOrigins = [
+  env.clientUrl,
+  "https://task-management-application-xi-six.vercel.app"
+];
+
 app.use(
   cors({
-    origin: env.clientUrl,
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+      
+      const isAllowed = allowedOrigins.includes(origin) || 
+                        (origin.startsWith("https://task-management-application-") && origin.endsWith(".vercel.app"));
+      
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        callback(new Error(`Not allowed by CORS: ${origin}`));
+      }
+    },
     credentials: true
   })
 );

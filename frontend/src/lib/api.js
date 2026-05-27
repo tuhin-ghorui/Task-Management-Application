@@ -21,7 +21,7 @@ export const apiRequest = async (path, options = {}) => {
       headers
     });
   } catch {
-    throw new Error("Cannot reach the backend API. Make sure the backend is running on localhost:5000.");
+    throw new Error(`Cannot reach the backend API at ${API_URL}. Please verify the connection or check if the backend is running.`);
   }
 
   const data = await response.json().catch(() => ({}));

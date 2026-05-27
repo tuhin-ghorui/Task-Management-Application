@@ -9,7 +9,16 @@ const getUserRoom = (userId) => `user:${userId}`;
 const configureSocket = (server) => {
   const io = new Server(server, {
     cors: {
-      origin: env.clientUrl,
+      origin: (origin, callback) => {
+        const allowedOrigins = [
+          env.clientUrl,
+          "https://task-management-application-xi-six.vercel.app"
+        ];
+        if (!origin) return callback(null, true);
+        const isAllowed = allowedOrigins.includes(origin) || 
+                          (origin.startsWith("https://task-management-application-") && origin.endsWith(".vercel.app"));
+        callback(null, isAllowed);
+      },
       credentials: true
     }
   });
