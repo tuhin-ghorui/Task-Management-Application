@@ -33,7 +33,6 @@ const emptyForm = {
 const statusOptions = [
   { label: "All Tasks", value: "" },
   { label: "Pending", value: "pending" },
-  { label: "In Progress", value: "in-progress" },
   { label: "Completed", value: "completed" }
 ];
 
@@ -63,13 +62,11 @@ const Dashboard = () => {
 
   const stats = useMemo(() => {
     const completed = tasks.filter((task) => task.status === "completed").length;
-    const inProgress = tasks.filter((task) => task.status === "in-progress").length;
 
     return {
       total: tasks.length,
       completed,
-      inProgress,
-      pending: tasks.length - completed - inProgress
+      pending: tasks.length - completed
     };
   }, [tasks]);
 
@@ -203,7 +200,6 @@ const Dashboard = () => {
 
   const getStatusBorder = (taskStatus) => {
     if (taskStatus === "completed") return "border-l-[5px] border-l-emerald-500 dark:border-l-emerald-600";
-    if (taskStatus === "in-progress") return "border-l-[5px] border-l-indigo-500 dark:border-l-indigo-600";
     return "border-l-[5px] border-l-amber-500 dark:border-l-amber-600";
   };
 
@@ -263,11 +259,6 @@ const Dashboard = () => {
                   {stats.pending}
                 </span>
               )}
-              {option.value === "in-progress" && (
-                <span className="rounded-md bg-indigo-500/10 px-2 py-0.5 text-xs text-indigo-600 dark:text-indigo-400 font-bold border border-indigo-500/10">
-                  {stats.inProgress}
-                </span>
-              )}
               {option.value === "completed" && (
                 <span className="rounded-md bg-emerald-500/10 px-2 py-0.5 text-xs text-emerald-600 dark:text-emerald-400 font-bold border border-emerald-500/10">
                   {stats.completed}
@@ -297,8 +288,8 @@ const Dashboard = () => {
             </div>
             <div className="grid grid-cols-2 gap-2 text-center pt-1.5 border-t border-slate-200/30 dark:border-white/5">
               <div>
-                <span className="block text-lg font-bold text-slate-800 dark:text-slate-200">{stats.inProgress}</span>
-                <span className="text-[10px] uppercase font-bold text-indigo-500">Active</span>
+                <span className="block text-lg font-bold text-slate-800 dark:text-slate-200">{stats.pending}</span>
+                <span className="text-[10px] uppercase font-bold text-amber-500">Pending</span>
               </div>
               <div>
                 <span className="block text-lg font-bold text-slate-800 dark:text-slate-200">{stats.completed}</span>
@@ -441,7 +432,7 @@ const Dashboard = () => {
         <div className="flex-1 overflow-y-auto px-6 py-8">
           <div className="max-w-6xl mx-auto space-y-8">
             {/* Quick Stats Grid */}
-            <section className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <section className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div className="rounded-2xl border border-slate-200/50 dark:border-white/5 bg-white dark:bg-slate-900/40 p-4 shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 block mb-1">Total tasks</span>
                 <p className="text-3xl font-extrabold text-slate-900 dark:text-white">{stats.total}</p>
@@ -449,10 +440,6 @@ const Dashboard = () => {
               <div className="rounded-2xl border border-slate-200/50 dark:border-white/5 bg-white dark:bg-slate-900/40 p-4 shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-amber-500 dark:text-amber-500/80 block mb-1">Pending</span>
                 <p className="text-3xl font-extrabold text-slate-900 dark:text-white">{stats.pending}</p>
-              </div>
-              <div className="rounded-2xl border border-slate-200/50 dark:border-white/5 bg-white dark:bg-slate-900/40 p-4 shadow-sm hover:shadow-md transition-shadow">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-indigo-500 dark:text-indigo-500/80 block mb-1">Active</span>
-                <p className="text-3xl font-extrabold text-slate-900 dark:text-white">{stats.inProgress}</p>
               </div>
               <div className="rounded-2xl border border-slate-200/50 dark:border-white/5 bg-white dark:bg-slate-900/40 p-4 shadow-sm hover:shadow-md transition-shadow">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-500 dark:text-emerald-500/80 block mb-1">Completed</span>
