@@ -17,7 +17,7 @@ const AuthLayout = ({ children, heading, subheading }) => {
               <CheckCircle2 size={26} strokeWidth={2.5} />
             </div>
             <h1 className="mt-10 max-w-md text-4xl font-extrabold tracking-tight leading-tight bg-gradient-to-r from-white via-slate-100 to-slate-300 bg-clip-text text-transparent">
-              AuraTasks
+              TaskFlow
             </h1>
             <p className="mt-2 text-lg text-emerald-400/90 font-medium">Real-Time Task Workspace</p>
             <p className="mt-5 max-w-md text-base leading-7 text-slate-300/90">
@@ -51,7 +51,7 @@ const AuthLayout = ({ children, heading, subheading }) => {
                 <CheckCircle2 size={26} strokeWidth={2.5} />
               </div>
               <h1 className="mt-4 text-3xl font-extrabold tracking-tight text-slate-950 dark:text-white">
-                AuraTasks
+                TaskFlow
               </h1>
               <p className="text-sm text-emerald-600 dark:text-emerald-400 font-medium">Real-Time Task Workspace</p>
             </div>

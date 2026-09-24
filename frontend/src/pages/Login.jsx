@@ -83,7 +83,7 @@ const Login = () => {
       </form>
 
       <p className="mt-8 text-center text-sm text-slate-500 dark:text-slate-400">
-        New to AuraTasks?{" "}
+        New to TaskFlow?{" "}
         <Link className="font-semibold text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors" to="/register">
           Create an account
         </Link>

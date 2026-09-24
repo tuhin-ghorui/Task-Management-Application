@@ -217,7 +217,7 @@ const Dashboard = () => {
             <Check size={22} strokeWidth={2.5} />
           </div>
           <div>
-            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">AuraTasks</span>
+            <span className="text-lg font-bold tracking-tight text-slate-900 dark:text-white">TaskFlow</span>
             <span className="block text-xs font-semibold text-emerald-600 dark:text-emerald-400">Task Workspace</span>
           </div>
         </div>
